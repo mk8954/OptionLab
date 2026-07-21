@@ -1,0 +1,5 @@
+window.onload=()=>{
+
+loadPage("dashboard");
+
+}
