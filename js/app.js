@@ -2,4 +2,4 @@ window.onload=()=>{
 
 loadPage("dashboard");
 
-}
+};
