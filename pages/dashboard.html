@@ -1,90 +1,91 @@
 <div class="dashboard">
 
     <!-- Header -->
-    <header class="top-header">
-
-        <div class="brand">
+    <header class="dashboard-header">
+        <div>
             <h1>OptionLab</h1>
-            <p>Paper Trading Simulator</p>
+            <p>Learn. Practice. Analyse </p>
         </div>
 
-        <button class="notify-btn">
-            <span class="material-symbols-outlined">notifications</span>
+        <button class="notification-btn">
+            <span class="material-symbols-outlined">
+                notifications
+            </span>
         </button>
-
     </header>
 
     <!-- Portfolio Card -->
     <section class="portfolio-card">
 
-        <span class="label">Virtual Portfolio</span>
+        <div class="portfolio-top">
+            <span class="label">Virtual Portfolio</span>
+            <span class="profit-chip">+₹0 Today</span>
+        </div>
 
         <h2>₹10,00,000</h2>
 
-        <div class="today-pl">
-            +₹0 Today
-        </div>
-
-        <div class="stats">
+        <div class="portfolio-stats">
 
             <div class="stat">
-                <span class="value">0</span>
-                <span class="title">Trades</span>
+                <h3>0</h3>
+                <p>Trades</p>
             </div>
 
             <div class="stat">
-                <span class="value">0%</span>
-                <span class="title">Win Rate</span>
+                <h3>0%</h3>
+                <p>Win Rate</p>
             </div>
 
             <div class="stat">
-                <span class="value">₹0</span>
-                <span class="title">Overall P&L</span>
+                <h3>₹0</h3>
+                <p>Overall P&L</p>
             </div>
 
         </div>
 
-        <div class="mini-chart">
-            <svg viewBox="0 0 300 70" preserveAspectRatio="none">
+        <div class="graph-placeholder">
+            <svg viewBox="0 0 300 80" preserveAspectRatio="none">
                 <polyline
+                    points="0,70 40,62 80,66 120,50 160,54 210,32 250,38 300,18"
                     fill="none"
-                    stroke="#7cf29a"
+                    stroke="#74F28A"
                     stroke-width="4"
-                    points="0,55 40,48 80,52 120,38 170,42 220,22 260,28 300,10"/>
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
             </svg>
         </div>
 
     </section>
 
     <!-- Market -->
-    <section class="market">
+    <section class="market-section">
 
-        <h3>Market Overview</h3>
+        <h2>Market Overview</h2>
 
         <div class="market-grid">
 
-            <div class="market-card">
-                <strong>NIFTY</strong>
-                <span>25,020</span>
-                <small class="green">▲ +0.42%</small>
+            <div class="market-card positive">
+                <span>NIFTY</span>
+                <strong>25,020</strong>
+                <small>▲ +0.42%</small>
             </div>
 
-            <div class="market-card">
-                <strong>BANKNIFTY</strong>
-                <span>56,185</span>
-                <small class="red">▼ -0.18%</small>
+            <div class="market-card negative">
+                <span>BANKNIFTY</span>
+                <strong>56,185</strong>
+                <small>▼ -0.18%</small>
             </div>
 
-            <div class="market-card">
-                <strong>FINNIFTY</strong>
-                <span>26,030</span>
-                <small class="green">▲ +0.21%</small>
+            <div class="market-card positive">
+                <span>FINNIFTY</span>
+                <strong>26,030</strong>
+                <small>▲ +0.21%</small>
             </div>
 
-            <div class="market-card">
-                <strong>MIDCPNIFTY</strong>
-                <span>14,910</span>
-                <small class="green">▲ +0.09%</small>
+            <div class="market-card positive">
+                <span>MIDCPNIFTY</span>
+                <strong>14,910</strong>
+                <small>▲ +0.09%</small>
             </div>
 
         </div>
@@ -92,42 +93,52 @@
     </section>
 
     <!-- Quick Actions -->
-    <section class="quick-actions">
+    <section class="quick-section">
 
-        <h3>Quick Actions</h3>
+        <h2>Quick Actions</h2>
 
-        <div class="action-grid">
+        <div class="quick-grid">
 
-            <button class="action-card">
+            <button class="quick-card" onclick="loadPage('trade')">
                 <span class="material-symbols-outlined">trending_up</span>
-                Trade
+                <h3>Trade</h3>
+                <p>Start Trading</p>
             </button>
 
-            <button class="action-card">
-                <span class="material-symbols-outlined">account_balance_wallet</span>
-                Positions
+            <button class="quick-card" onclick="loadPage('positions')">
+                <span class="material-symbols-outlined">work</span>
+                <h3>Positions</h3>
+                <p>Open Trades</p>
             </button>
 
-            <button class="action-card">
+            <button class="quick-card" onclick="loadPage('analytics')">
                 <span class="material-symbols-outlined">analytics</span>
-                Analytics
+                <h3>Analytics</h3>
+                <p>Performance</p>
             </button>
 
-            <button class="action-card">
-                <span class="material-symbols-outlined">history</span>
-                History
+            <button class="quick-card" onclick="loadPage('profile')">
+                <span class="material-symbols-outlined">person</span>
+                <h3>Profile</h3>
+                <p>Settings</p>
             </button>
 
         </div>
 
     </section>
 
-    <!-- Recent -->
-    <section class="recent-card">
+    <!-- Recent Activity -->
+    <section class="activity-card">
 
-        <h3>Recent Activity</h3>
+        <span class="material-symbols-outlined empty-icon">
+            insights
+        </span>
 
-        <p>No trades yet. Your completed trades will appear here.</p>
+        <h3>No trades yet</h3>
+
+        <p>
+            Start your first paper trade to build your trading history.
+        </p>
 
     </section>
 

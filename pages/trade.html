@@ -1,4 +1,143 @@
-<div style="padding:20px">
-<h2>Trade</h2>
-<p>Option Chain Coming Soon</p>
+<div class="trade-page">
+
+    <!-- Header -->
+    <div class="trade-header">
+
+        <div class="trade-left">
+            <select id="symbolSelect">
+                <option>NIFTY</option>
+                <option>BANKNIFTY</option>
+                <option>FINNIFTY</option>
+                <option>MIDCPNIFTY</option>
+            </select>
+
+            <div class="index-price">
+                <h2 id="spotPrice">24,350</h2>
+                <span id="spotChange" class="negative">
+                    ▼ -82 (-0.34%)
+                </span>
+            </div>
+        </div>
+
+        <div class="trade-right">
+            <select id="expirySelect">
+                <option>Weekly</option>
+                <option>Monthly</option>
+            </select>
+        </div>
+
+    </div>
+
+    <!-- Search -->
+
+    <div class="trade-search">
+
+        <input
+            id="strikeSearch"
+            placeholder="Search Strike">
+
+        <button id="atmBtn">
+            ATM
+        </button>
+
+    </div>
+
+    <!-- Option Chain -->
+
+    <div class="option-header">
+
+        <div>CALL</div>
+
+        <div>STRIKE</div>
+
+        <div>PUT</div>
+
+    </div>
+
+    <div
+        id="optionChain"
+        class="option-chain">
+
+    </div>
+
+</div>
+
+<!-- Buy Bottom Sheet -->
+<!-- BUY / SELL SHEET -->
+<div id="tradeSheet" class="trade-sheet hidden">
+
+    <div class="sheet-handle"></div>
+
+    <div class="sheet-header">
+        <div>
+            <h2 id="sheetTitle">NIFTY 24350 CE</h2>
+            <span class="call-badge">CALL</span>
+        </div>
+
+        <button class="close-sheet" onclick="closeTradeSheet()">✕</button>
+    </div>
+
+    <div class="sheet-grid">
+
+        <div>
+            <small>Distance</small>
+            <strong id="sheetDistance">ATM</strong>
+        </div>
+
+        <div>
+            <small>Expiry</small>
+            <strong>31 Jul 2026</strong>
+        </div>
+
+        <div>
+            <small>Lot Size</small>
+            <strong>75</strong>
+        </div>
+
+    </div>
+
+    <div class="lots-box">
+
+        <span>Lots</span>
+
+        <div class="lot-selector">
+
+            <button onclick="changeLots(-1)">−</button>
+
+            <span id="lotCount">1</span>
+
+            <button onclick="changeLots(1)">+</button>
+
+        </div>
+
+    </div>
+
+    <div class="info-grid">
+
+        <div>
+            <small>Premium</small>
+            <strong>₹145.50</strong>
+        </div>
+
+        <div>
+            <small>Investment</small>
+            <strong id="investment">₹10,912</strong>
+        </div>
+
+        <div>
+            <small>Margin</small>
+            <strong id="margin">₹10,912</strong>
+        </div>
+
+    </div>
+
+    <button class="paper-buy">
+        BUY PAPER TRADE
+    </button>
+
+</div>
+
+
+<div id="tradeSheet" class="trade-sheet hidden">
+
 </div>
