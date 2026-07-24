@@ -1,485 +1,836 @@
-/* ==========================
+/* ===========================
    TRADE PAGE
-========================== */
+=========================== */
+
 
 .trade-page{
-    width:100%;
-    max-width:480px;
-    margin:auto;
-    padding:20px 18px 110px;
+    background:#08111f;
+    color:#ffffff;
+    min-height:100vh;
+    padding:15px;
+    padding-bottom:90px;
+    font-family:'Segoe UI',sans-serif;
 }
 
-/* ==========================
-   HEADER
-========================== */
 
-.trade-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    margin-bottom:20px;
-}
+/* ===========================
+INDEX STRIP
+=========================== */
 
-.trade-left{
+
+.index-strip{
     display:flex;
-    flex-direction:column;
+    overflow-x:auto;
     gap:10px;
+    margin-bottom:18px;
+    scrollbar-width:none;
 }
 
-.trade-right{
-    display:flex;
-    align-items:center;
+
+.index-strip::-webkit-scrollbar{
+    display:none;
 }
 
-.trade-header select{
 
-    background:#171d2b;
-
-    color:#fff;
-
+.index-chip{
     border:none;
-
+    background:#15253f;
+    color:#a5b4c7;
+    padding:10px 18px;
     border-radius:14px;
+    font-size:14px;
+    font-weight:600;
+    white-space:nowrap;
+    transition:.25s;
+}
+
+
+.index-chip.active{
+    background:#1b8cff;
+    color:#fff;
+    box-shadow:0 0 12px rgba(27,140,255,.45);
+}
+
+
+/* ===========================
+MARKET CARD
+=========================== */
+
+
+.market-card{
+
+
+    background:#101c31;
+
+
+    border-radius:20px;
+
+
+    padding:18px;
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    margin-bottom:18px;
+
+
+}
+
+
+.market-left h2{
+
+
+    margin:0;
+
+
+    color:#bfcde0;
+
+
+    font-size:15px;
+
+
+}
+
+
+.market-left h1{
+
+
+    margin-top:8px;
+
+
+    font-size:34px;
+
+
+    font-weight:700;
+
+
+}
+
+
+.market-right{
+
+
+    text-align:right;
+
+
+}
+
+
+.atm-box{
+
+
+    background:#1d5eff;
+
 
     padding:10px 16px;
 
-    font-size:15px;
 
-    outline:none;
-}
+    border-radius:12px;
 
-.index-price h2{
-
-    margin:0;
-
-    color:#fff;
-
-    font-size:32px;
-
-    font-weight:700;
-}
-
-.index-price span{
-
-    font-size:14px;
-
-    margin-top:5px;
-
-    display:block;
-}
-
-.positive{
-
-    color:#33d17a;
-}
-
-.negative{
-
-    color:#ff5d5d;
-}
-
-/* ==========================
-   SEARCH
-========================== */
-
-.trade-search{
-
-    display:flex;
-
-    gap:12px;
-
-    margin-bottom:22px;
-}
-
-.trade-search input{
-
-    flex:1;
-
-    height:48px;
-
-    background:#171d2b;
-
-    border:none;
-
-    border-radius:14px;
-
-    padding:0 16px;
-
-    color:#fff;
-
-    font-size:15px;
-}
-
-.trade-search input::placeholder{
-
-    color:#8d98b0;
-}
-
-.trade-search button{
-
-    width:74px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:#2563eb;
-
-    color:#fff;
-
-    font-weight:700;
-
-    cursor:pointer;
-}
-
-/* ==========================
-   OPTION HEADER
-========================== */
-
-.option-header{
-
-    display:grid;
-
-    grid-template-columns:1fr 90px 1fr;
-
-    text-align:center;
 
     margin-bottom:12px;
 
-    color:#9db2d0;
 
     font-size:13px;
 
-    font-weight:700;
-
-    text-transform:uppercase;
-
-    letter-spacing:.5px;
-}
-
-/* ==========================
-   OPTION CHAIN
-========================== */
-.option-chain {
-    margin-top: 20px;
-}
-.option-chain{
-    padding-bottom:120px;
-}
-
-.chain-row{
-    display:grid;
-    grid-template-columns:70px 55px 80px 55px 70px;
-    align-items:center;
-    gap:8px;
-    padding:12px;
-    background:#18233d;
-    border-radius:16px;
-    margin-bottom:12px;
-}
-.trade-container{
-    width:100%;
-    max-width:520px;
-    margin:auto;
-    padding:18px;
-    box-sizing:border-box;
-}
-.buy-call,
-.buy-put{
-    width:70px;
-    height:40px;
-    border:none;
-    border-radius:12px;
-    background:#2ecc71;
-    color:#fff;
-    font-weight:700;
-    cursor:pointer;
-}
-
-.strike {
-    text-align: center;
-    color: white;
-    font-weight: 700;
-}
-
-.call-distance {
-    color: #00e676;
-    text-align: center;
-}
-
-.put-distance {
-    color: #ff5252;
-    text-align: center;
-}
-
-.atm-row {
-    border: 2px solid #4da3ff;
-}
-
-.option-row:hover{
-
-    transform:translateY(-2px);
-
-    box-shadow:0 8px 22px rgba(0,0,0,.25);
-}
-/* =========================
-   TRADE BOTTOM SHEET
-========================= */
-
-.trade-sheet{
-
-    position:fixed;
-
-    left:0;
-    right:0;
-    bottom:0;
-
-    width:100%;
-    max-width:520px;
-    margin:auto;
-
-    background:#121926;
-
-    border-radius:28px 28px 0 0;
-
-    padding:24px;
-
-    box-shadow:0 -15px 40px rgba(0,0,0,.45);
-
-    z-index:999;
-
-    transform:translateY(100%);
-
-    transition:.35s ease;
 
 }
 
-.trade-sheet.show{
 
-    transform:translateY(0);
+.atm-box span{
 
-}
-
-.hidden{
-
-    display:none;
-
-}
-
-.sheet-handle{
-
-    width:60px;
-    height:6px;
-
-    background:#39455f;
-
-    border-radius:20px;
-
-    margin:0 auto 18px;
-
-}
-
-.sheet-header{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:20px;
-
-}
-
-.sheet-header h2{
-
-    margin:0;
-
-    color:#fff;
-
-    font-size:22px;
-
-}
-
-.call-badge{
-
-    display:inline-block;
-
-    margin-top:6px;
-
-    padding:5px 12px;
-
-    background:#16a34a;
-
-    color:#fff;
-
-    border-radius:20px;
-
-    font-size:12px;
-
-    font-weight:700;
-
-}
-
-.put-badge{
-
-    display:inline-block;
-
-    margin-top:6px;
-
-    padding:5px 12px;
-
-    background:#dc2626;
-
-    color:#fff;
-
-    border-radius:20px;
-
-    font-size:12px;
-
-    font-weight:700;
-
-}
-
-.close-sheet{
-
-    width:40px;
-
-    height:40px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#1f2937;
-
-    color:#fff;
-
-    cursor:pointer;
-
-}
-
-.sheet-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:14px;
-
-    margin-bottom:20px;
-
-}
-
-.sheet-grid div,
-.info-grid div{
-
-    background:#182235;
-
-    border-radius:16px;
-
-    padding:14px;
-
-}
-
-.sheet-grid small,
-.info-grid small{
 
     display:block;
 
-    color:#90a4c3;
 
-    margin-bottom:8px;
+    margin-top:5px;
 
-}
-
-.sheet-grid strong,
-.info-grid strong{
-
-    color:#fff;
-
-}
-
-.lots-box{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    background:#182235;
-
-    border-radius:18px;
-
-    padding:18px;
-
-    margin-bottom:20px;
-
-    color:#fff;
-
-}
-
-.lot-selector{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-
-}
-
-.lot-selector button{
-
-    width:40px;
-
-    height:40px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:#2563eb;
-
-    color:#fff;
 
     font-size:20px;
 
-    cursor:pointer;
+
+    font-weight:bold;
+
 
 }
 
-.info-grid{
 
-    display:grid;
+.lot-box{
 
-    grid-template-columns:repeat(3,1fr);
 
-    gap:14px;
+    color:#9fb1c8;
 
-    margin-bottom:24px;
+
+    font-size:13px;
+
 
 }
 
-.paper-buy{
 
-    width:100%;
+.lot-box span{
 
-    height:58px;
 
-    border:none;
+    display:block;
 
-    border-radius:18px;
 
-    background:linear-gradient(135deg,#2563eb,#60a5fa);
+    margin-top:4px;
+
+
+    font-size:20px;
+
 
     color:#fff;
 
+
+    font-weight:bold;
+
+
+}
+
+
+/* ===========================
+EXPIRY
+=========================== */
+
+
+.expiry-strip{
+
+
+    display:flex;
+
+
+    overflow-x:auto;
+
+
+    gap:10px;
+
+
+    margin-bottom:18px;
+
+
+    scrollbar-width:none;
+
+
+}
+
+
+.expiry-strip::-webkit-scrollbar{
+
+
+    display:none;
+
+
+}
+
+
+.expiry-chip{
+
+
+    border:none;
+
+
+    background:#18273f;
+
+
+    color:#d3dceb;
+
+
+    padding:9px 18px;
+
+
+    border-radius:30px;
+
+
+    white-space:nowrap;
+
+
+    font-size:13px;
+
+
+}
+
+
+.expiry-chip.active{
+
+
+    background:#28c76f;
+
+
+    color:#fff;
+
+
+}
+
+
+/* ===========================
+SEARCH
+=========================== */
+
+
+.search-area{
+
+
+    display:flex;
+
+
+    gap:10px;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+.search-area input{
+
+
+    flex:1;
+
+
+    border:none;
+
+
+    outline:none;
+
+
+    background:#18273f;
+
+
+    color:#fff;
+
+
+    padding:14px;
+
+
+    border-radius:14px;
+
+
+    font-size:15px;
+
+
+}
+
+
+#atmBtn{
+
+
+    width:75px;
+
+
+    border:none;
+
+
+    border-radius:14px;
+
+
+    background:#1b8cff;
+
+
+    color:#fff;
+
+
+    font-weight:bold;
+
+
+}
+
+
+/* ===========================
+CHAIN HEADER
+=========================== */
+
+
+.chain-header{
+
+
+    display:grid;
+
+
+    grid-template-columns:1fr 90px 1fr;
+
+
+    text-align:center;
+
+
+    padding:12px 0;
+
+
+    font-weight:bold;
+
+
+    color:#b7c6da;
+
+
+}
+
+
+.call-header{
+
+
+    color:#2dff6a;
+
+
+}
+
+
+.put-header{
+
+
+    color:#ff6868;
+
+
+}
+
+
+/* ===========================
+OPTION CHAIN
+=========================== */
+
+
+.option-chain{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:8px;
+
+
+}
+
+
+/* ===========================
+CHAIN ROW
+=========================== */
+
+
+.chain-row{
+
+
+    display:grid;
+
+
+    grid-template-columns:1fr 90px 1fr;
+
+
+    align-items:center;
+
+
+    text-align:center;
+
+
+    background:#121f34;
+
+
+    border-radius:14px;
+
+
+    min-height:54px;
+
+
+    transition:.25s;
+
+
+}
+
+
+.chain-row:hover{
+
+
+    background:#1a2d48;
+
+
+}
+
+
+.chain-row.atm{
+
+
+    border:1px solid #1b8cff;
+
+
+    box-shadow:0 0 12px rgba(27,140,255,.35);
+
+
+}
+
+
+.call-side,
+
+
+.put-side{
+
+
     font-size:18px;
+
+
+    font-weight:bold;
+
+
+}
+
+
+.strike{
+
+
+    font-size:17px;
+
 
     font-weight:700;
 
-    cursor:pointer;
 
+    color:#fff;
+
+
+}
+
+
+/* ===========================
+DISTANCE COLORS
+=========================== */
+
+
+.green{
+
+
+    color:#2dff6a;
+
+
+}
+
+
+.red{
+
+
+    color:#ff5f5f;
+
+
+}
+
+
+.zero{
+
+
+    color:#ffffff;
+
+
+}
+
+/* ===========================
+TRADE SHEET
+=========================== */
+
+
+.trade-sheet{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    background:#0d1728;
+    border-radius:26px 26px 0 0;
+    padding:22px;
+    max-height:88vh;
+    overflow-y:auto;
+    box-shadow:0 -8px 30px rgba(0,0,0,.45);
+    transform:translateY(100%);
+    transition:transform .35s ease;
+    z-index:999;
+}
+
+
+.trade-sheet.show{
+    transform:translateY(0);
+}
+
+
+.trade-sheet.hidden{
+    display:none;
+}
+
+
+/* ===========================
+SHEET HEADER
+=========================== */
+
+
+.sheet-header{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+
+.sheet-header h2{
+    margin:0;
+    font-size:22px;
+    color:#ffffff;
+}
+
+
+/* ===========================
+LABELS
+=========================== */
+
+
+.sheet-body label{
+    display:block;
+    margin-top:18px;
+    margin-bottom:8px;
+    color:#b8c7db;
+    font-size:14px;
+    font-weight:600;
+}
+
+
+/* ===========================
+INPUTS
+=========================== */
+
+
+.sheet-body input,
+.sheet-body textarea{
+    width:100%;
+    box-sizing:border-box;
+    border:none;
+    outline:none;
+    background:#16243b;
+    color:#ffffff;
+    padding:14px;
+    border-radius:14px;
+    font-size:15px;
+}
+
+
+.sheet-body textarea{
+    resize:none;
+    min-height:90px;
+}
+
+
+/* ===========================
+LOTS
+=========================== */
+
+
+.lots-row{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+}
+
+
+.lots-row button{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#1b8cff;
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+}
+
+
+#lotCount{
+    font-size:22px;
+    font-weight:700;
+    min-width:30px;
+    text-align:center;
+}
+
+
+/* ===========================
+RISK METER
+=========================== */
+
+
+.risk-box{
+    margin-top:22px;
+    background:#16243b;
+    padding:16px;
+    border-radius:16px;
+}
+
+
+.risk-box span{
+    display:block;
+    margin-bottom:10px;
+    font-weight:600;
+}
+
+
+.risk-bar{
+    width:100%;
+    height:10px;
+    background:#243753;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+
+.risk-fill{
+    width:80%;
+    height:100%;
+    border-radius:10px;
+    background:linear-gradient(90deg,#22c55e,#84cc16);
+}
+
+
+#riskText{
+    display:block;
+    margin-top:10px;
+    color:#7df0a8;
+    font-weight:600;
+}
+
+
+/* ===========================
+SUMMARY CARD
+=========================== */
+
+
+.summary-card{
+    margin-top:22px;
+    background:#16243b;
+    border-radius:18px;
+    padding:18px;
+}
+
+
+.summary-card div{
+    display:flex;
+    justify-content:space-between;
+    margin:12px 0;
+    color:#d6e0ef;
+}
+
+
+.summary-card span{
+    font-weight:700;
+    color:#ffffff;
+}
+
+
+/* ===========================
+TAGS
+=========================== */
+
+
+.tag-section{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:16px;
+}
+
+
+.tag{
+    border:none;
+    background:#1b2d49;
+    color:#d5e3f5;
+    padding:10px 16px;
+    border-radius:22px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+
+.tag:hover,
+.tag.active{
+    background:#1b8cff;
+    color:#fff;
+}
+
+
+/* ===========================
+BUY BUTTON
+=========================== */
+
+
+.buy-btn{
+    width:100%;
+    margin-top:26px;
+    border:none;
+    padding:16px;
+    border-radius:16px;
+    font-size:18px;
+    font-weight:700;
+    color:#ffffff;
+    background:linear-gradient(135deg,#22c55e,#16a34a);
+    cursor:pointer;
+    transition:.25s;
+}
+
+
+.buy-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(34,197,94,.35);
+}
+
+
+/* ===========================
+SCROLLBAR
+=========================== */
+
+
+.trade-sheet::-webkit-scrollbar{
+    width:6px;
+}
+
+
+.trade-sheet::-webkit-scrollbar-thumb{
+    background:#2d4568;
+    border-radius:10px;
+}
+
+
+/* ===========================
+MOBILE
+=========================== */
+
+
+@media (max-width:600px){
+
+
+    .market-left h1{
+        font-size:28px;
+    }
+
+
+    .market-card{
+        padding:15px;
+    }
+
+
+    .chain-header{
+        grid-template-columns:1fr 70px 1fr;
+    }
+
+
+    .chain-row{
+        grid-template-columns:1fr 70px 1fr;
+        min-height:50px;
+    }
+
+
+    .strike{
+        font-size:15px;
+    }
+
+
+    .call-side,
+    .put-side{
+        font-size:16px;
+    }
 }

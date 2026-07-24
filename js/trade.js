@@ -1,142 +1,715 @@
-// ===========================
-// OPTIONLAB TRADE ENGINE
-// Part 1
-// ===========================
+/* ==========================
+   OPTIONLAB TRADE ENGINE
+========================== */
 
-let optionChain = [];
 
-const underlyingPrice = 24350;
-const strikeGap = 50;
+const indices = {
 
-// Create dummy option chain
-function generateOptionChain() {
 
-    optionChain = [];
+    NIFTY: {
+        spot: 24350,
+        step: 50,
+        lot: 65
+    },
 
-    for (let strike = 23850; strike <= 24850; strike += strikeGap) {
 
-        const distance = strike - underlyingPrice;
+    BANKNIFTY: {
+        spot: 57400,
+        step: 100,
+        lot: 35
+    },
 
-        optionChain.push({
 
-            strike,
+    FINNIFTY: {
+        spot: 25800,
+        step: 50,
+        lot: 65
+    },
 
-            distance,
 
-            callPremium: Math.max(5,
-                Math.round(220 - Math.abs(distance) * 0.45)
-            ),
+    MIDCPNIFTY: {
+        spot: 13475,
+        step: 25,
+        lot: 120
+    },
 
-            putPremium: Math.max(5,
-                Math.round(220 - Math.abs(distance) * 0.45)
-            )
+
+    SENSEX: {
+        spot: 80500,
+        step: 100,
+        lot: 20
+    }
+
+
+};
+
+
+let currentIndex = "NIFTY";
+
+
+let selectedStrike = 0;
+
+
+let tradeType = "CE";
+
+
+let premium = 0;
+
+
+let lots = 1;
+
+
+
+
+/* ==========================
+INITIALISE
+========================== */
+
+
+window.onload = () => {
+
+
+    loadIndex(currentIndex);
+
+
+    bindIndexButtons();
+
+
+    bindLots();
+
+
+};
+
+
+
+
+/* ==========================
+LOAD INDEX
+========================== */
+
+
+function loadIndex(name){
+
+
+    currentIndex = name;
+
+
+    const data = indices[name];
+
+
+    document.getElementById("selectedIndex").innerText =
+        name;
+
+
+    document.getElementById("spotPrice").innerText =
+        data.spot;
+
+
+    document.getElementById("lotSize").innerText =
+        data.lot;
+
+
+    const atm =
+        Math.round(data.spot/data.step)*data.step;
+
+
+    document.getElementById("atmStrike").innerText =
+        atm;
+
+
+    generateChain(atm,data.step);
+
+
+}
+
+
+
+
+/* ==========================
+INDEX BUTTONS
+========================== */
+
+
+function bindIndexButtons(){
+
+
+    document
+        .querySelectorAll(".index-chip")
+        .forEach(btn=>{
+
+
+            btn.onclick=()=>{
+
+
+                document
+                .querySelectorAll(".index-chip")
+                .forEach(x=>x.classList.remove("active"));
+
+
+                btn.classList.add("active");
+
+
+                loadIndex(btn.dataset.index);
+
+
+            };
+
 
         });
 
+
+}
+
+
+
+
+/* ==========================
+OPTION CHAIN
+========================== */
+
+
+function generateChain(atm,step){
+
+
+    selectedStrike = atm;
+
+
+    let html="";
+
+
+    for(let i=6;i>=-6;i--){
+
+
+        const strike = atm-(i*step);
+
+
+        const diff = strike-atm;
+
+
+        let callClass="";
+        let putClass="";
+
+
+        let callText="";
+        let putText="";
+
+
+        if(diff<0){
+
+
+            callClass="green";
+            putClass="red";
+
+
+            callText="+"+Math.abs(diff);
+            putText="-"+Math.abs(diff);
+
+
+        }
+
+
+        else if(diff>0){
+
+
+            callClass="red";
+            putClass="green";
+
+
+            callText="-"+Math.abs(diff);
+            putText="+"+Math.abs(diff);
+
+
+        }
+
+
+        else{
+
+
+            callClass="zero";
+            putClass="zero";
+
+
+            callText="ATM";
+            putText="ATM";
+
+
+        }
+
+
+        html+=`
+
+
+<div class="chain-row ${diff===0?'atm':''}">
+
+
+<div
+class="call-side ${callClass}"
+onclick="openTrade(${strike},'CE')">
+
+
+${callText}
+
+
+</div>
+
+
+<div class="strike">
+
+
+${strike}
+
+
+</div>
+
+
+<div
+class="put-side ${putClass}"
+onclick="openTrade(${strike},'PE')">
+
+
+${putText}
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
     }
 
-    renderOptionChain(optionChain);
+
+    document
+    .getElementById("optionChain")
+    .innerHTML=html;
+
 
 }
 
-function renderOptionChain(data) {
 
-    const table = document.getElementById("optionChain");
 
-    if (!table) return;
 
-    table.innerHTML = "";
+/* ==========================
+OPEN SHEET
+========================== */
 
-    data.forEach(item => {
 
-        const atm = item.distance === 0 ? "atm-row" : "";
+function openTrade(strike,type){
 
-        table.innerHTML += `
 
-        <div class="chain-row ${atm}">
+    selectedStrike=strike;
 
-            <button class="buy-call"
-                onclick="buyOption('CALL',${item.strike})">
 
-                BUY
-            </button>
+    tradeType=type;
 
-            <div class="call-distance">
 
-                ${item.distance > 0 ? "+" : ""}
-                ${item.distance}
+    document
+    .getElementById("tradeTitle")
+    .innerText=
+    currentIndex+
+    " "+
+    strike+
+    " "+
+    type;
 
-            </div>
 
-            <div class="strike">
+    const sheet =
+    document.getElementById("tradeSheet");
 
-                ${item.strike}
-
-            </div>
-
-            <div class="put-distance">
-
-                ${item.distance > 0 ? "+" : ""}
-                ${item.distance}
-
-            </div>
-
-            <button class="buy-put"
-                onclick="buyOption('PUT',${item.strike})">
-
-                BUY
-            </button>
-
-        </div>
-
-        `;
-
-    });
-
-}
-
-function buyOption(type, strike){
-
-    const sheet = document.getElementById("tradeSheet");
-
-    document.getElementById("sheetTitle").innerText =
-        `NIFTY ${strike} ${type === "CALL" ? "CE" : "PE"}`;
-
-    const badge = document.querySelector(".call-badge");
-
-    badge.innerText = type;
-
-    badge.className =
-        type === "CALL"
-        ? "call-badge"
-        : "put-badge";
 
     sheet.classList.remove("hidden");
 
-    setTimeout(() => {
-
-        sheet.classList.add("show");
-
-    },10);
-
-}
-
-function closeTradeSheet(){
-
-    const sheet = document.getElementById("tradeSheet");
-
-    sheet.classList.remove("show");
 
     setTimeout(()=>{
 
-        sheet.classList.add("hidden");
 
-    },300);
+        sheet.classList.add("show");
+
+
+    },10);
+
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
 
-    generateOptionChain();
+
+
+/* ==========================
+LOTS
+========================== */
+
+
+function bindLots(){
+
+
+    document
+    .getElementById("plusLot")
+    .onclick=()=>{
+
+
+        lots++;
+
+
+        updateLots();
+
+
+    };
+
+
+    document
+    .getElementById("minusLot")
+    .onclick=()=>{
+
+
+        if(lots>1){
+
+
+            lots--;
+
+
+            updateLots();
+
+
+        }
+
+
+    };
+
+
+}
+
+
+function updateLots(){
+
+
+    document
+    .getElementById("lotCount")
+    .innerText=lots;
+
+
+}
+
+/* ==========================
+PREMIUM CALCULATIONS
+========================== */
+
+
+document.getElementById("premium").addEventListener("input", updateSummary);
+document.getElementById("sl").addEventListener("input", updateSummary);
+document.getElementById("target").addEventListener("input", updateSummary);
+
+
+function updateSummary(){
+
+
+    const data = indices[currentIndex];
+
+
+    premium = parseFloat(document.getElementById("premium").value) || 0;
+
+
+    const slPercent =
+        parseFloat(document.getElementById("sl").value) || 0;
+
+
+    const targetPercent =
+        parseFloat(document.getElementById("target").value) || 0;
+
+
+    const investment =
+        premium * data.lot * lots;
+
+
+    const brokerage =
+        calculateBrokerage(investment);
+
+
+    const risk =
+        investment * slPercent / 100;
+
+
+    const reward =
+        investment * targetPercent / 100;
+
+
+    document.getElementById("investment").innerText =
+        "₹"+investment.toFixed(2);
+
+
+    document.getElementById("charges").innerText =
+        "₹"+brokerage.toFixed(2);
+
+
+    document.getElementById("riskAmount").innerText =
+        "₹"+risk.toFixed(2);
+
+
+    document.getElementById("rewardAmount").innerText =
+        "₹"+reward.toFixed(2);
+
+
+    updateRiskMeter(risk,reward,investment);
+
+
+}
+
+
+/* ==========================
+BROKERAGE
+========================== */
+
+
+function calculateBrokerage(value){
+
+
+    let brokerage = 20;
+
+
+    brokerage += value * 0.0005;
+
+
+    brokerage += brokerage * 0.18;
+
+
+    return brokerage;
+
+
+}
+
+
+/* ==========================
+RISK METER
+========================== */
+
+
+function updateRiskMeter(risk,reward,investment){
+
+
+    let score = 50;
+
+
+    if(reward>risk)
+        score+=20;
+
+
+    if(reward>=risk*2)
+        score+=15;
+
+
+    if(investment<10000)
+        score+=10;
+
+
+    if(lots===1)
+        score+=5;
+
+
+    if(score>100)
+        score=100;
+
+
+    document.getElementById("riskFill").style.width =
+        score+"%";
+
+
+    let text="";
+
+
+    if(score>=80)
+        text="🟢 Excellent";
+
+
+    else if(score>=65)
+        text="🟢 Good";
+
+
+    else if(score>=45)
+        text="🟡 Moderate";
+
+
+    else
+        text="🔴 High Risk";
+
+
+    document.getElementById("riskText").innerText =
+        text+" ("+score+"/100)";
+
+
+}
+
+
+/* ==========================
+QUICK TAGS
+========================== */
+
+
+document.querySelectorAll(".tag").forEach(tag=>{
+
+
+    tag.onclick=()=>{
+
+
+        tag.classList.toggle("active");
+
+
+    };
+
 
 });
+
+
+/* ==========================
+BUY TRADE
+========================== */
+
+
+document.getElementById("buyTrade").onclick=function(){
+
+
+    const trade={
+
+
+        index:currentIndex,
+
+
+        strike:selectedStrike,
+
+
+        type:tradeType,
+
+
+        premium:premium,
+
+
+        lots:lots,
+
+
+        investment:
+            document.getElementById("investment").innerText,
+
+
+        charges:
+            document.getElementById("charges").innerText,
+
+
+        risk:
+            document.getElementById("riskAmount").innerText,
+
+
+        reward:
+            document.getElementById("rewardAmount").innerText,
+
+
+        reason:
+            document.getElementById("tradeReason").value,
+
+
+        tags:
+            [...document.querySelectorAll(".tag.active")]
+            .map(t=>t.innerText),
+
+
+        entryDate:
+            new Date().toLocaleDateString(),
+
+
+        entryTime:
+            new Date().toLocaleTimeString(),
+
+
+        day:
+            new Date().toLocaleDateString(
+                "en-US",
+                {weekday:"long"}
+            ),
+
+
+        session:
+            getSession(),
+
+
+        status:"OPEN"
+
+
+    };
+
+
+    let trades =
+        JSON.parse(localStorage.getItem("optionlabTrades")) || [];
+
+
+    trades.push(trade);
+
+
+    localStorage.setItem(
+        "optionlabTrades",
+        JSON.stringify(trades)
+    );
+
+
+    alert("Trade Added Successfully");
+
+
+    closeTradeSheet();
+
+
+};
+
+
+/* ==========================
+SESSION
+========================== */
+
+
+function getSession(){
+
+
+    const h = new Date().getHours();
+
+
+    if(h<10)
+        return "Opening";
+
+
+    if(h<12)
+        return "Morning";
+
+
+    if(h<14)
+        return "Mid Day";
+
+
+    return "Closing";
+
+
+}
+
+
+/* ==========================
+CLOSE SHEET
+========================== */
+
+
+function closeTradeSheet(){
+
+
+    const sheet =
+        document.getElementById("tradeSheet");
+
+
+    sheet.classList.remove("show");
+
+
+    setTimeout(()=>{
+
+
+        sheet.classList.add("hidden");
+
+
+    },300);
+
+
+}
