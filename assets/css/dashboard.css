@@ -112,28 +112,28 @@
     gap:14px;
 }
 
-.market-card{
+.market-Card{
     background:#171f31;
     border-radius:18px;
     padding:16px;
 }
 
-.market-card span{
+.market-Card span{
     color:#9ca3af;
     display:block;
     margin-bottom:6px;
 }
 
-.market-card strong{
+.market-Card strong{
     display:block;
     font-size:1.4rem;
 }
 
-.market-card.positive small{
+.market-Card.positive small{
     color:#22c55e;
 }
 
-.market-card.negative small{
+.market-Card.negative small{
     color:#ef4444;
 }
 

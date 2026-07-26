@@ -25,8 +25,8 @@ async function loadPage(page) {
                 break;
 
             case "trade":
-                if (typeof generateOptionChain === "function")
-                    generateOptionChain();
+                if (typeof initTrade === "function")
+                   initTrade();
                 break;
 
             case "positions":
@@ -47,12 +47,15 @@ async function loadPage(page) {
         }
 
     } catch (err) {
+    console.error(err);
 
-        console.error(err);
 
-        document.getElementById("app").innerHTML =
-            "<h2 style='padding:30px;color:white'>Page not found</h2>";
-
-    }
+    document.getElementById("app").innerHTML = `
+        <div style="padding:30px;color:white">
+            <h2>Error loading page</h2>
+            <pre>${err}</pre>
+        </div>
+    `;
+}
 
 }

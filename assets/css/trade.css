@@ -1,0 +1,1393 @@
+/* ==========================
+   OPTIONLAB TRADE PAGE
+========================== */
+
+
+.trade-page{
+    max-width:520px;
+    margin:auto;
+    padding:15px;
+}
+
+
+/* ==========================
+INDEX TABS
+========================== */
+
+
+.index-tabs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-bottom:14px;
+    scrollbar-width:none;
+}
+
+
+.index-tabs::-webkit-scrollbar{
+    display:none;
+}
+
+
+.index-btn{
+    border:none;
+    background:#1d2740;
+    color:#9fb4ff;
+    padding:8px 16px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.25s;
+    white-space:nowrap;
+}
+
+
+.index-btn.active{
+    background:#2d7dff;
+    color:white;
+}
+
+
+.index-btn:hover{
+    background:#3353aa;
+}
+
+
+/* ==========================
+MARKET CARD
+========================== */
+
+
+.market-card{
+    background:linear-gradient(135deg,#1f3d95,#16295e);
+    border-radius:22px;
+    padding:18px;
+    display:flex;
+    justify-content:space-between;
+    color:white;
+    margin-bottom:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.35);
+}
+
+
+.market-left{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+
+#indexName{
+    font-size:22px;
+    font-weight:700;
+}
+
+
+#spotPrice{
+    font-size:34px;
+    font-weight:bold;
+}
+
+
+#dayChange{
+    font-size:18px;
+    color:#ff7070;
+}
+
+
+.market-right{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+
+.atm-box,
+.lot-box{
+    background:rgba(255,255,255,.10);
+    border-radius:14px;
+    padding:12px;
+    text-align:center;
+    min-width:90px;
+}
+
+
+.atm-box div:last-child,
+.lot-box div:last-child{
+    font-size:24px;
+    font-weight:bold;
+}
+
+
+/* ==========================
+EXPIRY TABS
+========================== */
+
+
+.expiry-tabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:16px;
+    overflow-x:auto;
+    scrollbar-width:none;
+}
+
+
+.expiry-tabs::-webkit-scrollbar{
+    display:none;
+}
+
+
+.expiry-btn{
+    background:#232323;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+
+.expiry-btn.active{
+    background:#2d7dff;
+}
+
+
+/* ==========================
+OPTION CHAIN
+========================== */
+
+
+.option-chain{
+    margin-top:18px;
+}
+
+
+.chain-header{
+    display:grid;
+    grid-template-columns:1fr 100px 1fr;
+    margin-bottom:12px;
+    font-weight:bold;
+    font-size:15px;
+}
+
+
+.call-head{
+    color:#42ff80;
+    text-align:center;
+}
+
+
+.strike-head{
+    color:white;
+    text-align:center;
+}
+
+
+.put-head{
+    color:#ff6363;
+    text-align:center;
+}
+
+
+.chain-row{
+    display:grid;
+    grid-template-columns:1fr 100px 1fr;
+    gap:10px;
+    margin-bottom:10px;
+    align-items:center;
+}
+
+
+.call-btn,
+.put-btn{
+    border:none;
+    height:48px;
+    border-radius:14px;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+
+.call-btn{
+    background:#28c76f;
+    color:white;
+}
+
+
+.call-btn:hover{
+    background:#21a95c;
+}
+
+
+.put-btn{
+    background:#ff5b5b;
+    color:white;
+}
+
+
+.put-btn:hover{
+    background:#dd4d4d;
+}
+
+
+.strike{
+    background:#2b4eaa;
+    color:white;
+    text-align:center;
+    border-radius:14px;
+    padding:12px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+
+/* ==========================
+ATM ROW
+========================== */
+
+
+.chain-row.atm .strike{
+    background:#ffd34d;
+    color:black;
+}
+
+
+.chain-row.atm .call-btn,
+.chain-row.atm .put-btn{
+    box-shadow:0 0 15px rgba(255,255,255,.25);
+}
+
+
+/* ==========================
+BOTTOM SPACE
+========================== */
+
+
+.bottom-space{
+    height:110px;
+}
+
+
+/* ==========================
+MOBILE
+========================== */
+
+
+@media(max-width:600px){
+
+
+.market-card{
+    flex-direction:column;
+    gap:20px;
+}
+
+
+.market-right{
+    flex-direction:row;
+}
+
+
+#indexName{
+    font-size:18px;
+}
+
+
+#spotPrice{
+    font-size:28px;
+}
+
+
+.chain-row{
+    grid-template-columns:1fr 80px 1fr;
+}
+
+
+.strike{
+    font-size:16px;
+}
+
+
+.call-btn,
+.put-btn{
+    height:44px;
+}
+
+
+}
+.market-card{
+
+
+margin:18px;
+
+
+padding:18px 20px;
+
+
+border-radius:22px;
+
+
+background:linear-gradient(145deg,#1748ff,#2d8bff);
+
+
+box-shadow:0 12px 30px rgba(0,0,0,.35),
+           0 15px 35px rgba(0,0,0,.35);
+
+
+}
+
+
+.market-main{
+
+
+display:flex;
+
+
+justify-content:space-between;
+
+
+align-items:center;
+
+
+}
+
+
+.market-name{
+
+
+font-size:20px;
+
+
+font-weight:700;
+
+
+color:white;
+
+
+}
+
+
+.market-price{
+
+
+font-size:48px;
+
+
+font-weight:800;
+
+
+margin-top:10px;
+
+
+color:white;
+
+
+}
+
+
+.market-change{
+
+
+margin-top:10px;
+
+
+font-size:22px;
+
+
+font-weight:700;
+
+
+}
+
+
+.market-change.negative{
+
+
+color:#ff7474;
+
+
+}
+
+
+.market-right{
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+gap:14px;
+
+
+}
+
+
+.info-box{
+
+
+background:rgba(255,255,255,.12);
+
+
+padding:12px;
+
+
+border-radius:16px;
+
+
+text-align:center;
+
+
+min-width:90px;
+
+
+backdrop-filter:blur(8px);
+
+
+}
+
+
+.info-box span{
+
+
+display:block;
+
+
+font-size:13px;
+
+
+opacity:.8;
+
+
+color:white;
+
+
+}
+
+
+.info-box strong{
+
+
+font-size:28px;
+
+
+color:white;
+
+
+}
+
+
+.option-chain{
+
+
+margin:18px;
+
+
+}
+
+
+.chain-header{
+
+
+display:grid;
+
+
+grid-template-columns:1fr 90px 1fr;
+
+
+padding:12px;
+
+
+font-weight:700;
+
+
+color:white;
+
+
+text-align:center;
+
+
+}
+
+
+.chain-row{
+
+
+display:grid;
+
+
+grid-template-columns:1fr 90px 1fr;
+
+
+padding:14px 8px;
+
+
+align-items:center;
+
+
+text-align:center;
+
+
+border-bottom:1px solid rgba(255,255,255,.05);
+
+
+transition:.2s;
+
+
+cursor:pointer;
+
+
+}
+
+
+.chain-row:hover{
+
+
+background:rgba(255,255,255,.05);
+
+
+}
+
+
+.call-side{
+
+
+color:#34d06b;
+
+
+font-weight:700;
+
+
+}
+
+
+.put-side{
+
+
+color:#ff6464;
+
+
+font-weight:700;
+
+
+}
+
+
+.strike{
+
+
+font-weight:700;
+
+
+color:white;
+
+
+}
+
+
+.atm-row{
+
+
+background:rgba(60,130,255,.18);
+
+
+border-radius:10px;
+
+
+}
+
+// new css
+
+/* =========================================
+   TRADE SCREEN
+========================================= */
+
+
+.trade-screen{
+    max-width:520px;
+    margin:0 auto;
+    padding:16px;
+}
+
+
+/* =========================================
+   INDEX TABS
+========================================= */
+
+
+.trade-screen .index-tabs{
+
+
+    display:flex;
+
+
+    gap:10px;
+
+
+    overflow-x:auto;
+
+
+    padding-bottom:8px;
+
+
+    margin-bottom:18px;
+
+
+    scrollbar-width:none;
+
+
+}
+
+
+.trade-screen .index-tabs::-webkit-scrollbar{
+    display:none;
+}
+
+
+.trade-screen .index-btn{
+
+
+    border:none;
+
+
+    background:#1d2740;
+
+
+    color:#b8c7ff;
+
+
+    padding:10px 18px;
+
+
+    border-radius:14px;
+
+
+    font-size:14px;
+
+
+    font-weight:600;
+
+
+    white-space:nowrap;
+
+
+    cursor:pointer;
+
+
+    transition:.25s;
+
+
+}
+
+
+.trade-screen .index-btn.active{
+
+
+    background:#2d7dff;
+
+
+    color:#fff;
+
+
+}
+
+
+.trade-screen .index-btn:hover{
+
+
+    background:#3b5fd4;
+
+
+}
+
+
+/* =========================================
+   MARKET CARD
+========================================= */
+
+
+.trade-screen .market-card{
+
+
+    background:linear-gradient(135deg,#193d8f,#2a6dff);
+
+
+    border-radius:22px;
+
+
+    padding:18px 20px;
+
+
+    display:grid;
+
+
+    grid-template-columns:2fr 1fr;
+
+
+    gap:20px;
+
+
+    color:#fff;
+
+
+    box-shadow:0 10px 25px rgba(0,0,0,.30);
+
+
+}
+
+
+/* LEFT */
+
+
+.trade-screen .market-title{
+
+
+    font-size:20px;
+
+
+    font-weight:700;
+
+
+    margin-bottom:12px;
+
+
+}
+
+
+.trade-screen .market-price{
+
+
+    font-size:42px;
+
+
+    font-weight:800;
+
+
+    line-height:1;
+
+
+}
+
+
+.trade-screen .market-change{
+
+
+    margin-top:12px;
+
+
+    font-size:16px;
+
+
+    font-weight:600;
+
+
+}
+
+
+.trade-screen .negative{
+
+
+    color:#ff9d9d;
+
+
+}
+
+
+/* RIGHT */
+
+
+.trade-screen .market-right{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    gap:14px;
+
+
+    justify-content:center;
+
+
+}
+
+
+.trade-screen .info-card{
+
+
+    background:rgba(255,255,255,.12);
+
+
+    border-radius:14px;
+
+
+    padding:12px;
+
+
+    text-align:center;
+
+
+    backdrop-filter:blur(10px);
+
+
+}
+.info-card{
+
+
+    background:rgba(255,255,255,.12);
+    height: 90px;
+    display:flex;
+    flex-direction:column;
+    justify content:centre
+
+    border-radius:14px;
+
+
+    padding:12px;
+
+
+    text-align:center;
+
+
+    backdrop-filter:blur(10px);
+
+
+}
+
+.trade-screen .info-label{
+
+
+    font-size:12px;
+
+
+    opacity:.85;
+
+
+    letter-spacing:.8px;
+
+
+}
+
+
+.trade-screen .info-value{
+
+
+    margin-top:6px;
+
+
+    font-size:24px;
+
+
+    font-weight:700;
+
+
+}
+
+
+/* MOBILE */
+
+
+@media(max-width:480px){
+
+
+.trade-screen .market-card{
+
+
+    grid-template-columns:1.8fr 1fr;
+
+
+    padding:18px;
+
+
+}
+
+
+.trade-screen .market-price{
+
+
+    font-size:34px;
+
+
+}
+
+
+.trade-screen .info-value{
+
+
+    font-size:20px;
+
+
+}
+
+
+}
+.option-chain{
+
+
+margin-top:24px;
+
+
+}
+
+
+.chain-header{
+
+
+display:grid;
+
+
+grid-template-columns:1fr 110px 1fr;
+
+
+font-weight:700;
+
+
+font-size:15px;
+
+
+margin-bottom:12px;
+
+
+color:white;
+
+
+text-align:center;
+
+
+}
+
+
+.chain-header .call-head{
+
+
+color:#3DFF83;
+
+
+}
+
+
+.chain-header .put-head{
+
+
+color:#FF6666;
+
+
+}
+
+
+.chain-row{
+
+
+display:grid;
+
+
+grid-template-columns:1fr 110px 1fr;
+
+
+align-items:center;
+
+
+padding:8px 0;
+
+
+}
+
+
+.distance-chip{
+
+
+width:72px;
+
+
+margin:auto;
+
+
+padding:8px 0;
+
+
+border-radius:12px;
+
+
+text-align:center;
+
+
+font-weight:700;
+
+
+cursor:pointer;
+
+
+transition:.25s;
+
+
+}
+
+
+.distance-chip:hover{
+
+
+transform:scale(1.05);
+
+
+}
+
+
+.call-green{
+
+
+background:#153E28;
+
+
+color:#58FF9B;
+
+
+}
+
+
+.call-red{
+
+
+background:#401A1A;
+
+
+color:#FF7B7B;
+
+
+}
+
+
+.put-green{
+
+
+background:#153E28;
+
+
+color:#58FF9B;
+
+
+}
+
+
+.put-red{
+
+
+background:#401A1A;
+
+
+color:#FF7B7B;
+
+
+}
+
+
+.atm-chip{
+
+
+background:#2D7DFF;
+
+
+color:white;
+
+
+}
+
+
+.strike-text{
+
+
+text-align:center;
+
+
+font-size:18px;
+
+
+font-weight:700;
+
+
+color:white;
+
+
+}
+
+
+.atm-row{
+
+
+background:rgba(45,125,255,.15);
+
+
+border-radius:14px;
+
+
+}
+.spot-divider{
+
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+
+    margin:8px 0;
+
+
+    color:#49A8FF;
+
+
+    font-size:15px;
+
+
+    font-weight:700;
+
+
+    letter-spacing:1px;
+
+
+}
+
+
+.spot-divider::before,
+.spot-divider::after{
+
+
+    content:"";
+
+
+    flex:1;
+
+
+    height:1px;
+
+
+    background:linear-gradient(
+        to right,
+        transparent,
+        rgba(73,168,255,.9)
+    );
+
+
+}
+
+
+.spot-divider::after{
+
+
+    background:linear-gradient(
+        to left,
+        transparent,
+        rgba(73,168,255,.9)
+    );
+
+
+}
+
+
+.spot-divider span{
+
+
+    padding:0 16px;
+
+
+}
+
+/* ===========================
+   CURRENT MARKET DIVIDER
+=========================== */
+
+
+.spot-divider{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    margin:18px 0;
+
+
+    width:100%;
+
+
+}
+
+
+.spot-divider::before{
+
+
+    content:"";
+
+
+    flex:1;
+
+
+    height:2px;
+
+
+    background:linear-gradient(
+        to right,
+        transparent,
+        #2da8ff
+    );
+
+
+}
+
+
+.spot-divider::after{
+
+
+    content:"";
+
+
+    flex:1;
+
+
+    height:2px;
+
+
+    background:linear-gradient(
+        to left,
+        transparent,
+        #2da8ff
+    );
+
+
+}
+
+
+.spot-divider span{
+
+
+    margin:0 16px;
+
+
+    color:#ffffff;
+
+
+    font-size:16px;
+
+
+    font-weight:700;
+
+
+    letter-spacing:1px;
+
+
+    text-shadow:0 0 8px rgba(45,168,255,.5);
+
+
+}
+.strike{
+
+
+    width:110px;
+
+
+    text-align:center;
+
+
+    font-size:22px;
+
+
+    font-weight:700;
+
+
+    color:#ffffff;
+
+
+}
+
+.call-chip,
+.put-chip{
+
+
+    background:none;
+    border:none;
+    box-shadow:none;
+
+
+    width:auto;
+    height:auto;
+
+
+    padding:0;
+
+
+    font-size:22px;
+    font-weight:700;
+
+
+    cursor:pointer;
+
+
+    transition:.2s;
+}
+
+
+.call-chip{
+    color:#33ff66;
+}
+
+
+.put-chip{
+    color:#ff5b5b;
+}
+
+
+.call-chip:hover{
+    color:#7dff9f;
+    transform:scale(1.08);
+}
+
+
+.put-chip:hover{
+    color:#ff8d8d;
+    transform:scale(1.08);
+}
+
+.chain-row{
+
+
+    display:grid;
+
+
+    grid-template-columns:80px 1fr 80px;
+
+
+    align-items:center;
+
+
+    padding:8px 0;
+
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+.strike{
+
+
+    width:90px;
+
+
+    font-size:21px;
+
+
+    font-weight:700;
+
+
+    text-align:center;
+
+
+    color:#fff;
+
+
+}

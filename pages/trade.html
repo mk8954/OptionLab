@@ -1,47 +1,35 @@
-<div class="trade-page">
+<div class="trade-screen">
 
 
-    <!-- ========================= -->
-    <!-- INDEX SELECTOR -->
-    <!-- ========================= -->
+    <!-- =========================
+         INDEX TABS
+    ========================== -->
 
 
-    <div class="index-strip">
+    <div class="index-tabs">
 
 
-        <button class="index-chip active" data-index="NIFTY">
-            NIFTY
-        </button>
+        <button class="index-btn active">NIFTY</button>
 
 
-        <button class="index-chip" data-index="BANKNIFTY">
-            BANKNIFTY
-        </button>
+        <button class="index-btn">BANKNIFTY</button>
 
 
-        <button class="index-chip" data-index="FINNIFTY">
-            FINNIFTY
-        </button>
+        <button class="index-btn">FINNIFTY</button>
 
 
-        <button class="index-chip" data-index="MIDCPNIFTY">
-            MIDCPNIFTY
-        </button>
+        <button class="index-btn">MIDCPNIFTY</button>
 
 
-        <button class="index-chip" data-index="SENSEX">
-            SENSEX
-        </button>
+        <button class="index-btn">SENSEX</button>
 
 
     </div>
 
 
-
-
-    <!-- ========================= -->
-    <!-- MARKET INFO -->
-    <!-- ========================= -->
+    <!-- =========================
+         MARKET CARD
+    ========================== -->
 
 
     <div class="market-card">
@@ -50,14 +38,19 @@
         <div class="market-left">
 
 
-            <h2 id="selectedIndex">
+            <div class="market-title" id="indexName">
                 NIFTY 50
-            </h2>
+            </div>
 
 
-            <h1 id="spotPrice">
-                24350
-            </h1>
+            <div class="market-price" id="spotPrice">
+                24,350
+            </div>
+
+
+            <div class="market-change negative" id="dayChange">
+                ▼ -82 (-0.34%)
+            </div>
 
 
         </div>
@@ -66,467 +59,60 @@
         <div class="market-right">
 
 
-            <div class="atm-box">
+            <div class="info-card">
 
 
-                ATM
+                <div class="info-label">
+                    ATM
+                </div>
 
 
-                <span id="atmStrike">
-                    24350
-                </span>
-
-
-            </div>
-
-
-            <div class="lot-box">
-
-
-                Lot Size
-
-
-                <span id="lotSize">
-                    75
-                </span>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-
-
-    <!-- ========================= -->
-    <!-- EXPIRY -->
-    <!-- ========================= -->
-
-
-    <div class="expiry-strip">
-
-
-        <button class="expiry-chip active">
-            24 Jul
-        </button>
-
-
-        <button class="expiry-chip">
-            31 Jul
-        </button>
-
-
-        <button class="expiry-chip">
-            07 Aug
-        </button>
-
-
-        <button class="expiry-chip">
-            28 Aug
-        </button>
-
-
-    </div>
-
-
-
-
-    <!-- ========================= -->
-    <!-- SEARCH -->
-    <!-- ========================= -->
-
-
-    <div class="search-area">
-
-
-        <input
-            id="strikeSearch"
-            type="number"
-            placeholder="Search Strike">
-
-
-        <button id="atmBtn">
-            ATM
-        </button>
-
-
-    </div>
-
-
-
-
-    <!-- ========================= -->
-    <!-- OPTION CHAIN HEADER -->
-    <!-- ========================= -->
-
-
-    <div class="chain-header">
-
-
-        <div class="call-header">
-
-
-            CALL
-
-
-        </div>
-
-
-        <div class="strike-header">
-
-
-            STRIKE
-
-
-        </div>
-
-
-        <div class="put-header">
-
-
-            PUT
-
-
-        </div>
-
-
-    </div>
-
-
-
-
-    <!-- ========================= -->
-    <!-- OPTION CHAIN -->
-    <!-- ========================= -->
-
-
-    <div
-        id="optionChain"
-        class="option-chain">
-
-
-    </div>
-
-
-</div>
-
-
-
-
-
-
-<!-- ================================= -->
-<!-- TRADE BOTTOM SHEET -->
-<!-- ================================= -->
-
-
-<div
-    id="tradeSheet"
-    class="trade-sheet hidden">
-
-
-    <div class="sheet-header">
-
-
-        <h2 id="tradeTitle">
-
-
-            NIFTY 24350 CE
-
-
-        </h2>
-
-
-    </div>
-
-
-
-
-
-
-    <div class="sheet-body">
-
-
-        <!-- Premium -->
-
-
-        <label>
-
-
-            Premium
-
-
-        </label>
-
-
-        <input
-            id="premium"
-            type="number"
-            step="0.05"
-            placeholder="Enter Premium">
-
-
-
-
-        <!-- Lots -->
-
-
-        <label>
-
-
-            Lots
-
-
-        </label>
-
-
-        <div class="lots-row">
-
-
-            <button id="minusLot">
-
-
-                -
-
-
-            </button>
-
-
-            <span id="lotCount">
-
-
-                1
-
-
-            </span>
-
-
-            <button id="plusLot">
-
-
-                +
-
-
-            </button>
-
-
-        </div>
-
-
-
-
-        <!-- Stoploss -->
-
-
-        <label>
-
-
-            Stop Loss %
-
-
-        </label>
-
-
-        <input
-            id="sl"
-            type="number"
-            placeholder="5">
-
-
-
-
-        <!-- Target -->
-
-
-        <label>
-
-
-            Target %
-
-
-        </label>
-
-
-        <input
-            id="target"
-            type="number"
-            placeholder="10">
-
-
-
-
-        <!-- Risk Meter -->
-
-
-        <div class="risk-box">
-
-
-            <span>
-
-
-                Risk Meter
-
-
-            </span>
-
-
-            <div class="risk-bar">
-
-
-                <div
-                    id="riskFill"
-                    class="risk-fill">
-
-
+                <div class="info-value" id="atmStrike">
+                    24,350
                 </div>
 
 
             </div>
 
 
-            <small id="riskText">
+            <div class="info-card">
 
 
-                Good Trade
+                <div class="info-label">
+                    LOT SIZE
+                </div>
 
 
-            </small>
-
-
-        </div>
-
-
-
-
-        <!-- Summary -->
-
-
-        <div class="summary-card">
-
-
-            <div>
-
-
-                Investment
-
-
-                <span id="investment">
-                    ₹0
-                </span>
-
-
-            </div>
-
-
-            <div>
-
-
-                Charges
-
-
-                <span id="charges">
-                    ₹0
-                </span>
-
-
-            </div>
-
-
-            <div>
-
-
-                Risk
-
-
-                <span id="riskAmount">
-                    ₹0
-                </span>
-
-
-            </div>
-
-
-            <div>
-
-
-                Reward
-
-
-                <span id="rewardAmount">
-                    ₹0
-                </span>
+                <div class="info-value" id="lotSize">
+                    75
+                </div>
 
 
             </div>
 
 
         </div>
-
-
-
-
-        <!-- Trade Reason -->
-
-
-        <label>
-
-
-            Why am I entering this trade?
-
-
-        </label>
-
-
-        <textarea
-            id="tradeReason"
-            rows="3"
-            placeholder="Write your trading setup..."></textarea>
-
-
-
-
-        <!-- Quick Tags -->
-
-
-        <div class="tag-section">
-
-
-            <button class="tag">Breakout</button>
-            <button class="tag">Reversal</button>
-            <button class="tag">Trend</button>
-            <button class="tag">VWAP</button>
-            <button class="tag">EMA</button>
-            <button class="tag">RSI</button>
-            <button class="tag">MACD</button>
-            <button class="tag">Support</button>
-            <button class="tag">Resistance</button>
-            <button class="tag">News</button>
-
-
-        </div>
-
-
-
-
-        <!-- Buy -->
-
-
-        <button
-            id="buyTrade"
-            class="buy-btn">
-
-
-            BUY
-
-
-        </button>
 
 
     </div>
 
+    <div class="spot-divider">
+    <span>NIFTY 24350</span>
+    </div>
+    <!-- Option Chain will come here -->
+    <div class="option-chain">
+
+
+    <div class="chain-header">
+        <div class="call-head">CALL</div>
+        <div class="strike-head">STRIKE</div>
+        <div class="put-head">PUT</div>
+    </div>
+
+
+    <div id="optionRows"></div>
+
+
+</div>
 
 </div>
