@@ -96,9 +96,6 @@
 
     </div>
 
-    <div class="spot-divider">
-    <span>NIFTY 24350</span>
-    </div>
     <!-- Option Chain will come here -->
     <div class="option-chain">
 
@@ -113,6 +110,432 @@
     <div id="optionRows"></div>
 
 
+    </div>
+   <!-- ==========================
+     TRADE SHEET
+========================== -->
+
+
+<div id="tradeSheet" class="trade-sheet">
+
+
+    <div class="sheet-handle"></div>
+
+
+    <!-- HEADER -->
+
+
+    <div class="sheet-header">
+
+
+        <div class="sheet-top">
+
+
+            <div class="sheet-title">
+
+
+                <span id="sheetTypeIcon">🟢</span>
+
+
+                <span id="sheetInstrument">
+                    NIFTY 24500 CE
+                </span>
+
+
+            </div>
+
+
+            <button class="sheet-close"
+                onclick="closeTradeSheet()">
+                ✕
+            </button>
+
+
+        </div>
+
+
+        <div class="sheet-subtitle">
+
+
+            <span id="sheetExpiry">
+                31 JUL
+            </span>
+
+
+            •
+
+
+            <span id="sheetLot">
+                Lot 65
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- TRADE DETAILS -->
+
+
+    <div class="trade-card">
+
+
+        <div class="section-title">
+            Trade Details
+        </div>
+
+
+        <div class="two-column">
+
+
+            <!-- PREMIUM -->
+
+
+            <div class="card-box">
+
+
+                <label>Premium</label>
+
+
+                <input
+                    id="premiumInput"
+                    type="text"
+                    inputmode="decimal"
+                    value="">
+
+
+            </div>
+
+
+            <!-- LOTS -->
+
+
+            <div class="card-box">
+
+
+                <label>Lots</label>
+
+
+                <div class="lot-selector">
+
+
+                    <button id="minusLot">
+                        −
+                    </button>
+
+
+                    <span id="lotCount">
+                        1
+                    </span>
+
+
+                    <button id="plusLot">
+                        +
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="info-row">
+
+
+            <span>
+                Lot Size :
+                <b id="lotSizeLabel">65</b>
+            </span>
+
+
+            <span>
+                Quantity :
+                <b id="quantityLabel">65</b>
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+
+   <div class="trade-card">
+
+
+    <div class="section-title">
+        SL / Target
+    </div>
+
+
+    <div class="two-column">
+
+
+        <!-- STOP LOSS -->
+
+
+        <div class="card-box">
+
+
+            <label>Stop Loss</label>
+
+
+            <div class="percent-control">
+
+
+                <button id="slMinus">−</button>
+
+
+                <input
+                    id="slPercent"
+                    type="text"
+                    inputmode="decimal"
+                    value="20">
+
+
+                <span>%</span>
+
+
+                <button id="slPlus">+</button>
+
+
+            </div>
+
+
+        </div>
+
+
+        <!-- TARGET -->
+
+
+        <div class="card-box">
+
+
+            <label>Target</label>
+
+
+            <div class="percent-control">
+
+
+                <button id="tgMinus">−</button>
+
+
+                <input
+                    id="tgPercent"
+                    type="text"
+                    inputmode="decimal"
+                    value="10">
+
+
+                <span>%</span>
+
+
+                <button id="tgPlus">+</button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="two-column" style="margin-top:16px;">
+
+
+        <div class="card-box">
+
+
+            <label>SL Premium</label>
+
+
+            <div class="premium-box" id="slPremium">
+
+
+                ₹119.22
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="card-box">
+
+
+            <label>TG Premium</label>
+
+
+            <div class="premium-box" id="tgPremium">
+
+
+                ₹138.05
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
 </div>
 
+
+
+
+
+    <!-- RISK -->
+
+
+    <div class="trade-card">
+
+
+        <div class="section-title">
+
+
+            Risk Analysis
+
+
+        </div>
+
+
+        <div class="two-column">
+
+
+            <div class="risk-card">
+
+
+                <div class="risk-title">
+
+
+                    Risk
+
+
+                </div>
+
+
+                <div class="progress">
+
+
+                    <div
+                        id="riskBar"
+                        class="risk-fill">
+                    </div>
+
+
+                </div>
+
+
+                <div id="riskValue">
+
+
+                    ₹1007
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="reward-card">
+
+
+                <div class="risk-title">
+
+
+                    Reward
+
+
+                </div>
+
+
+                <div class="progress">
+
+
+                    <div
+                        id="rewardBar"
+                        class="reward-fill">
+                    </div>
+
+
+                </div>
+
+
+                <div id="rewardValue">
+
+
+                    ₹1625
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="rr-badge">
+
+
+            R:R
+
+
+            <span id="rrValue">
+
+
+                1 : 1.61
+
+
+            </span>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ACTION -->
+
+
+    <div class="trade-actions">
+
+
+        <button class="cancel-btn">
+
+
+            Cancel
+
+
+        </button>
+
+
+        <button class="buy-btn">
+
+
+            Buy Trade
+
+
+        </button>
+
+
+    </div>
+
+
+</div>
 </div>

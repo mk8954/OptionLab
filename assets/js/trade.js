@@ -7,17 +7,17 @@ const INDEXES = {
     NIFTY: {
         name: "NIFTY 50",
         spot: 24350,
-        lot: 75
+        lot: 65
     },
     BANKNIFTY: {
         name: "BANKNIFTY",
         spot: 56500,
-        lot: 35
+        lot: 30
     },
     FINNIFTY: {
         name: "FINNIFTY",
         spot: 26250,
-        lot: 65
+        lot: 60
     },
     MIDCPNIFTY: {
         name: "MIDCPNIFTY",
@@ -30,8 +30,11 @@ const INDEXES = {
         lot: 20
     }
 };
-
-
+let selectedSide ="";
+let selectedStrike =0;
+let startY = 0;
+let currentY = 0;
+let isDragging = false;
 let currentIndex = "NIFTY";
 
 
@@ -221,6 +224,112 @@ function generateOptionChain() {
 function selectStrike(side, strike){
 
     console.log(side + " " + strike);
+    openTradeSheet(side, strike);
+}
+
+function openTradeSheet(side, strike){
+
+
+    selectedSide = side;
+    selectedStrike = strike;
+
+
+    const option = side === "CALL" ? "CE" : "PE";
+
+
+    document.getElementById("sheetTypeIcon").textContent =
+        side === "CALL" ? "🟢" : "🔴";
+
+
+    document.getElementById("sheetInstrument").textContent =
+        `${currentIndex} ${strike} ${option}`;
+
+
+    document.getElementById("sheetExpiry").textContent =
+        currentExpiry;
+
+
+    document.getElementById("sheetLot").textContent =
+        `Lot ${INDEXES[currentIndex].lot}`;
+
+
+    document.getElementById("tradeSheet")
+        .classList.add("show");
+
+
+}
+function closeTradeSheet(){
+
+
+    document
+        .getElementById("tradeSheet")
+        .classList.remove("show");
+
+
+}
+function enableSheetSwipe(){
+
+
+    const sheet = document.getElementById("tradeSheet");
+
+
+    sheet.addEventListener("touchstart",(e)=>{
+
+
+        startY = e.touches[0].clientY;
+        isDragging = true;
+
+
+    });
+
+
+    sheet.addEventListener("touchmove",(e)=>{
+
+
+        if(!isDragging) return;
+
+
+        currentY = e.touches[0].clientY;
+
+
+        let diff = currentY - startY;
+
+
+        if(diff > 0){
+
+
+            sheet.style.transform = `translateY(${diff}px)`;
+
+
+        }
+
+
+    });
+
+
+    sheet.addEventListener("touchend",()=>{
+
+
+        isDragging = false;
+
+
+        let diff = currentY - startY;
+
+
+        if(diff > 120){
+
+
+            closeTradeSheet();
+
+
+        }
+
+
+        sheet.style.transform = "translateY(0)";
+
+
+    });
+
 
 }
 function bindOptionClicks() {
@@ -262,7 +371,7 @@ function initTrade() {
 
     loadIndex(currentIndex);
 
-
+    enableSheetSwipe();
     generateOptionChain();
 
     console.log("INIT TRADE RUNNING")
