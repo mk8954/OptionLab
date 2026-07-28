@@ -2,7 +2,7 @@
 // OptionLab - Market Module
 // ==========================================
 
-
+/*
 const MARKETS = {
 
 
@@ -116,4 +116,12 @@ function loadMarket(market) {
     document.getElementById("lotSize").textContent = data.lot;
 
 
+}
+*/
+// market.js
+console.log("market.js disabled (Trade.js handles market now)");
+
+
+function initMarket() {
+    console.log("Market handled by Trade.js");
 }
